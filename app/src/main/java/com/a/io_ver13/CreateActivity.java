@@ -47,6 +47,8 @@ public class CreateActivity extends Activity {
             /*mYear = year;
             mMonth = monthOfYear;
             mDay = dayOfMonth;*/
+            Button button1 = (Button)findViewById(R.id.button_date_selecter);
+            button1.setText(new StringBuffer().append(year).append("-").append(monthOfYear+1).append("-").append(dayOfMonth));
         }
     };
 }
