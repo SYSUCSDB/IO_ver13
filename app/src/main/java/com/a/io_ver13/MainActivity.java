@@ -9,6 +9,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
 
 import java.sql.Time;
 import java.util.Date;
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     public Time event_time;
     public boolean event_if_alarm;
     public String event_note;
-
+    public boolean i = false;
 
 
     @Override
@@ -43,6 +45,28 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();*/
             }
         });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent return_intent) {
+        super.onActivityResult(requestCode, resultCode, return_intent);
+        if(resultCode == 2) {
+            if(requestCode == 1) {
+                event_title = return_intent.getStringExtra("m_event_title");
+                event_note = return_intent.getStringExtra("m_event_note");
+                i = return_intent.getBooleanExtra("i",false);
+                TextView show_title = (TextView)findViewById(R.id.show_title);
+                show_title.setText(event_title);
+                TextView show_note = (TextView)findViewById(R.id.show_note);
+                show_note.setText(event_note);
+                /*Button btn_confirmed = (Button)findViewById(R.id.button_confirm);
+                if(i)
+                    btn_confirmed.setText("yes");
+                else
+                    btn_confirmed.setText("nooooooo!");*/
+            }
+        }
     }
 
     @Override

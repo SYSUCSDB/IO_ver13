@@ -9,6 +9,7 @@
     tools:showIn="@layout/activity_main">
 
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
@@ -16,5 +17,47 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/show_title"
+        android:layout_width="164dp"
+        android:layout_height="89dp"
+        android:layout_marginBottom="19dp"
+        android:layout_marginEnd="204dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="27dp"
+        android:text="1111111"
+        app:layout_constraintBottom_toTopOf="@+id/show_note"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/show_note"
+        android:layout_width="165dp"
+        android:layout_height="84dp"
+        android:layout_marginBottom="28dp"
+        android:layout_marginEnd="203dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="19dp"
+        android:text="TextV2222222222"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/show_title" />
+
+    <Button
+        android:id="@+id/button_confirmed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="140dp"
+        android:layout_marginEnd="232dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="104dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/show_note" />
 
 </android.support.constraint.ConstraintLayout>

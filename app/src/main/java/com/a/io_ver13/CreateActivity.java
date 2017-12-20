@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TimePicker;
 
@@ -18,6 +19,7 @@ import android.widget.TimePicker;
  */
 
 public class CreateActivity extends Activity {
+    public boolean i = true;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_page);
@@ -45,7 +47,22 @@ public class CreateActivity extends Activity {
         Button button_confirm = (Button)findViewById(R.id.button_confirm);
         button_confirm.setOnClickListener(new View.OnClickListener(){
             @Override
+
             public void onClick(View view){
+                //pass data to main
+                EditText edit_title = (EditText)findViewById(R.id.edit_event_title);
+                EditText edit_note = (EditText)findViewById(R.id.edit_note);
+                String m_event_title = "";
+                m_event_title += edit_title.getText().toString().trim();
+                String m_event_note = "";
+                m_event_note += edit_note.getText().toString().trim();
+                Intent return_intent = new Intent();
+                return_intent.putExtra("event_title", m_event_title);
+                return_intent.putExtra("event_note", m_event_note);
+                //finish
+
+                //return_intent.putExtra("i", i);
+                setResult(2, return_intent);
                 finish();
             }
         });
@@ -63,6 +80,7 @@ public class CreateActivity extends Activity {
             }
 
         });
+
     };
 
     protected Dialog onCreateDialog(int id) {
