@@ -10,7 +10,19 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.sql.Time;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
+    //initialize data here
+    public int event_id;
+    public String event_title;
+    public Date event_date;
+    public Time event_time;
+    public boolean event_if_alarm;
+    public String event_note;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

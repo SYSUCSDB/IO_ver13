@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/text_note"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -43,7 +44,8 @@
             android:id="@+id/title_event_title"
             android:layout_width="140dp"
             android:layout_height="58dp"
-            android:text="EVENT TITLE" />
+            android:text="EVENT TITLE"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/edit_event_title"
@@ -54,7 +56,8 @@
             android:ems="10"
             android:inputType="text"
             android:selectAllOnFocus="true"
-            android:text="Input title here"
+            android:singleLine="true"
+            android:text="Enter title here"
             android:textColor="@android:color/darker_gray"
             tools:layout_editor_absoluteX="359dp"
             tools:layout_editor_absoluteY="29dp" />
@@ -65,7 +68,8 @@
             android:layout_height="47dp"
             android:layout_column="0"
             android:layout_row="1"
-            android:text="SET DATE" />
+            android:text="SET DATE"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/button_date_selecter"
@@ -82,7 +86,8 @@
             android:layout_height="43dp"
             android:layout_column="0"
             android:layout_row="2"
-            android:text="SET TIME" />
+            android:text="SET TIME"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/button_time_selecter"
@@ -98,7 +103,8 @@
             android:layout_height="43dp"
             android:layout_column="0"
             android:layout_row="3"
-            android:text="ALARM" />
+            android:text="ALARM"
+            android:textSize="18sp" />
 
         <Switch
             android:id="@+id/switch_alarm"
@@ -107,6 +113,27 @@
             android:layout_column="1"
             android:layout_row="3"
             android:text="YES/NO" />
+
+        <TextView
+            android:id="@+id/note"
+            android:layout_width="139dp"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="4"
+            android:text="NOTE"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/edit_note"
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
+            android:layout_column="1"
+            android:layout_row="4"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:selectAllOnFocus="true"
+            android:text="Enter note here"
+            android:textColor="@android:color/darker_gray" />
 
     </GridLayout>
 
