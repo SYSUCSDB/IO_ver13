@@ -6,11 +6,38 @@
     android:layout_height="match_parent">
 
 
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="false"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:expanded="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="1dp">
+
+        <Button
+            android:id="@+id/button_confirm"
+            android:layout_width="119dp"
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            android:text="Confirm"
+            android:textColor="@android:color/background_light" />
+
+
+    </android.support.design.widget.AppBarLayout>
+
     <GridLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
         <TextView
             android:id="@+id/title_event_title"
@@ -26,7 +53,9 @@
             android:layout_row="0"
             android:ems="10"
             android:inputType="text"
-            android:text="input title here"
+            android:selectAllOnFocus="true"
+            android:text="Input title here"
+            android:textColor="@android:color/darker_gray"
             tools:layout_editor_absoluteX="359dp"
             tools:layout_editor_absoluteY="29dp" />
 
@@ -44,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_row="1"
-            android:text="Set" />
+            android:text="SET" />
 
 
         <TextView
@@ -63,5 +92,22 @@
             android:layout_row="2"
             android:text="SET" />
 
+        <TextView
+            android:id="@+id/button_alarm"
+            android:layout_width="139dp"
+            android:layout_height="43dp"
+            android:layout_column="0"
+            android:layout_row="3"
+            android:text="ALARM" />
+
+        <Switch
+            android:id="@+id/switch_alarm"
+            android:layout_width="203dp"
+            android:layout_height="56dp"
+            android:layout_column="1"
+            android:layout_row="3"
+            android:text="YES/NO" />
+
     </GridLayout>
+
 </android.support.constraint.ConstraintLayout>

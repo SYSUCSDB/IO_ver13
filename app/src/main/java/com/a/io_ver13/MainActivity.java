@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
                 /*link create page here*/
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, CreateActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
             }

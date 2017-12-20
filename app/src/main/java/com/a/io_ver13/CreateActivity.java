@@ -40,14 +40,21 @@ public class CreateActivity extends Activity {
                 showDialog(2);
             }
         });
+        Button button_confirm = (Button)findViewById(R.id.button_confirm);
+        button_confirm.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                finish();
+            }
+        });
         };
 
     protected Dialog onCreateDialog(int id) {
         switch (id) {
             case 1:
-                return new DatePickerDialog(this, mdateListener, 2017, 12-1, 20);
+                return new DatePickerDialog(this, mdateListener, 2017, 1-1, 1);
             case 2:
-                return new TimePickerDialog(this, mtimeListener, 18, 58, true);
+                return new TimePickerDialog(this, mtimeListener, 1, 1, true);
         }
         return null;
     }
