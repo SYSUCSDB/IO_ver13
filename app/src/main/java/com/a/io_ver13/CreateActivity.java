@@ -8,7 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
+import android.widget.Switch;
 import android.widget.TimePicker;
 
 /**
@@ -47,7 +49,21 @@ public class CreateActivity extends Activity {
                 finish();
             }
         });
-        };
+        //add switch event here
+        final Switch switch_alarm = (Switch)findViewById(R.id.switch_alarm);
+        switch_alarm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                if(isChecked){
+                    switch_alarm.setText(new StringBuffer().append("yes"));
+                }
+                else{
+                    switch_alarm.setText(new StringBuffer().append("nooooooo!"));
+                }
+            }
+
+        });
+    };
 
     protected Dialog onCreateDialog(int id) {
         switch (id) {
