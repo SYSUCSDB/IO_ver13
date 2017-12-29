@@ -11,10 +11,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.sql.Time;
-import java.util.ArrayList;
 import java.util.Date;
+
+import static com.a.io_ver13.R.id.action_settings;
 
 public class MainActivity extends AppCompatActivity {
     //initialize data here
@@ -31,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +46,26 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
+            }
+        });
+        Toolbar menu = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(menu);
+
+        menu.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.action_settings:
+                        //Toast.makeText(MainActivity.this, "yes!", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent();
+                        intent.setClass(MainActivity.this, Settings.class);
+                        startActivity(intent);
+                        break;
+
+                    default:
+                        break;
+                }
+                return true;
             }
         });
 
@@ -66,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
                     btn_confirmed.setText("yes");
                 else
                     btn_confirmed.setText("nooooooo!");*/
-
             }
         }
     }
@@ -86,11 +107,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == action_settings) {
             return true;
         }
-
-
 
         return super.onOptionsItemSelected(item);
     }

@@ -21,6 +21,7 @@
         </activity>
         <activity android:name=".CreateActivity"/>
         <activity android:name=".DateSelecter" />
+        <activity android:name=".Settings"></activity>
     </application>
 
 </manifest>
