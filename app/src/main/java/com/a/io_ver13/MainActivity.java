@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                     btn_confirmed.setText("yes");
                 else
                     btn_confirmed.setText("nooooooo!");*/
+
             }
         }
     }
@@ -87,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+
+
 
         return super.onOptionsItemSelected(item);
     }

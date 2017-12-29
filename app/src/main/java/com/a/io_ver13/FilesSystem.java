@@ -34,8 +34,8 @@ public class FilesSystem {
             SimpleDateFormat sdf= (SimpleDateFormat) SimpleDateFormat.getDateInstance();
             SimpleDateFormat sde = (SimpleDateFormat) SimpleDateFormat.getTimeInstance();
             String mydata =  Integer.toString(data.event_id) + ','+ data.event_title +','+
-                    sdf.format(data.event_date)+ ',' + sde.format(data.event_time)+
-                    ',' + data.event_note + "\n";
+                    sdf.format(data.event_date)+ ',' + /*sde.format(data.event_time)+
+                    ',' +*/ data.event_note + "\n";
             bw.write(mydata);
             bw.close();
             osw.close();
