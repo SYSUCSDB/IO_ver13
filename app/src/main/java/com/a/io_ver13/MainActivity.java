@@ -25,6 +25,8 @@ import static com.a.io_ver13.R.id.action_settings;
 
 public class MainActivity extends AppCompatActivity {
     //initialize data here
+    public final int CREATE_REQUEST = 1;
+    public final int CREATE_RESULT = 2;
     public int event_id;
     public String event_title;
     public Date event_date;
@@ -33,11 +35,14 @@ public class MainActivity extends AppCompatActivity {
     public String event_note;
     public boolean i = false;
 
+    public EventData a;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        a = new EventData();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 /*link create page here*/
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, CreateActivity.class);
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, CREATE_REQUEST);
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
             }
@@ -77,20 +82,27 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent return_intent) {
         super.onActivityResult(requestCode, resultCode, return_intent);
-        if(resultCode == 2) {
-            if(requestCode == 1) {
-                event_title = return_intent.getStringExtra("m_event_title");
-                event_note = return_intent.getStringExtra("m_event_note");
-                i = return_intent.getBooleanExtra("i",false);
+        if(resultCode == CREATE_RESULT) {
+            if(requestCode == CREATE_REQUEST) {
+                //event_title = return_intent.getStringExtra("m_event_title");
+                //event_note = return_intent.getStringExtra("m_event_note");
+                //i = return_intent.getBooleanExtra("i",false);
                 TextView show_title = (TextView)findViewById(R.id.show_title);
-                show_title.setText(event_title);
+                //show_title.setText(event_title);
                 TextView show_note = (TextView)findViewById(R.id.show_note);
-                show_note.setText(event_note);
+                //show_note.setText(event_note);
                 /*Button btn_confirmed = (Button)findViewById(R.id.button_confirm);
                 if(i)
                     btn_confirmed.setText("yes");
                 else
                     btn_confirmed.setText("nooooooo!");*/
+                //DBOper oper = new DBOper(this);
+                //Cursor c = oper.queryCursor();
+                //在这个地方把a里的数据赋成数据库里读到的，可以用那两行字测试
+                a.set_event_title("title");
+                a.set_event_note("note");
+                show_title.setText(a.get_event_title());
+                show_note.setText(a.get_event_note());
             }
         }
     }

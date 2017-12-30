@@ -39,11 +39,15 @@ public class EventData {
     }
 
     public void set_event_day(Date new_date) {
-        Date old_date = event_date;
-        event_date = new_date;
-        event_date.setHours(old_date.getHours());
-        event_date.setMinutes(old_date.getMinutes());
-        event_date.setSeconds(old_date.getSeconds());
+        event_date.setYear(new_date.getYear());
+        event_date.setMonth(new_date.getMonth());
+        event_date.setDate(new_date.getDay());
+    }
+
+    public void set_event_day(int year, int month, int day) {
+        event_date.setYear(year);
+        event_date.setMonth(month);
+        event_date.setDate(day);
     }
 
     public void set_event_time(Date new_time) {
@@ -56,6 +60,12 @@ public class EventData {
         event_date.setHours(new_time.getHours());
         event_date.setMinutes(new_time.getMinutes());
         event_date.setSeconds(new_time.getSeconds());
+    }
+
+    public void set_event_time(int hour, int minute, int second) {
+        event_date.setHours(hour);
+        event_date.setMinutes(minute);
+        event_date.setSeconds(second);
     }
 
     public void set_event_note(String new_note) {
