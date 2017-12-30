@@ -12,7 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ListView;
+<<<<<<< HEAD
 import android.widget.SimpleAdapter;
+=======
+>>>>>>> 316457a2a798c4fd81b20c4193705d5c0cced850
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +25,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
+import static com.a.io_ver13.R.id.action_settings;
+
+
 
 import static com.a.io_ver13.R.id.action_settings;
 
@@ -41,15 +48,19 @@ public class MainActivity extends AppCompatActivity {
 
     public EventData a;
 
+<<<<<<< HEAD
     private ListView listView;
     private static final String[] title = {"事件1", "事件2", "事件3", "事件4", "事件5", "事件6", "事件7", "事件8", "事件9", "事件10"};
     private static final String[] date = {"2017-12-30 23:59:59", "2017-12-30 23:59:59", "2017-12-30 23:59:59", "2017-12-30 23:59:59", "2017-12-30 23:59:59", "2017-12-30 23:59:59", "2017-12-30 23:59:59", "2017-12-30 23:59:59", "2017-12-30 23:59:59", "2017-12-30 23:59:59"};
     private static final String[] note = {"1111", "1111", "1111", "1111", "1111", "1111", "1111", "1111", "1111", "1111"};
+=======
+>>>>>>> 316457a2a798c4fd81b20c4193705d5c0cced850
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+<<<<<<< HEAD
         listView = (ListView) findViewById(R.id.card_listView);
         a = new EventData();
 
@@ -66,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
         listView.addHeaderView(new View(this));
         listView.addFooterView(new View(this));
         listView.setAdapter(adapter);
+=======
+        a = new EventData();
+>>>>>>> 316457a2a798c4fd81b20c4193705d5c0cced850
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
