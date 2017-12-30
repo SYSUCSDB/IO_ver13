@@ -1,6 +1,7 @@
 package com.a.io_ver13;
 
 import java.sql.Time;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -14,7 +15,6 @@ public class EventData {
     //public Time event_time;
     public boolean event_if_alarm;
     public String event_note;
-
     public static int event_count = 0;
     public boolean enable;
 
