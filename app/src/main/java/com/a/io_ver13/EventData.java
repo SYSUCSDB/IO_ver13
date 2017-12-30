@@ -1,7 +1,7 @@
-package com.a.io_ver13;
+package com.example.administrator.mytestdb;
 
 import java.sql.Time;
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -9,25 +9,24 @@ import java.util.Date;
  */
 
 public class EventData {
-    public int event_id;
     public String event_title;
     public Date event_date;
     //public Time event_time;
     public boolean event_if_alarm;
     public String event_note;
-    public static int event_count = 0;
-    public boolean enable;
 
     public EventData() {
-        event_id = event_count++;
         event_title = "";
-        event_date = new Date();
+        event_date = new Date(System.currentTimeMillis());
         event_note = "";
-        enable = true;
+        event_if_alarm = true;
     }
 
-    public void set_event_id(int new_id) {
-        event_id = new_id;
+    public EventData(String title, Date date, boolean if_alarm, String note) {
+        event_title = title;
+        event_date = date;
+        event_note = note;
+        event_if_alarm = if_alarm;
     }
 
     public void set_event_title(String new_title) {
@@ -72,17 +71,6 @@ public class EventData {
         event_note = new_note;
     }
 
-    public void set_unable() {
-        enable = false;
-    }
-
-    public void set_enable() {
-        enable = true;
-    }
-
-    public int get_event_id() {
-        return event_id;
-    }
 
     public String get_event_title() {
         return event_title;
@@ -96,7 +84,9 @@ public class EventData {
         return event_note;
     }
 
-    public static int get_event_count() {
-        return event_count;
+    public String toString() {
+        SimpleDateFormat sdf= (SimpleDateFormat) SimpleDateFormat.getDateTimeInstance();
+        return event_title+","+sdf.format(event_date)+","+event_if_alarm+","+event_note;
     }
+
 }

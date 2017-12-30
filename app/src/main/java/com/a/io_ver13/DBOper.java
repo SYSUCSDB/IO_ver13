@@ -1,11 +1,16 @@
-package com.a.io_ver13;
+package com.example.administrator.mytestdb;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Administrator on 2017/12/30.
@@ -14,51 +19,51 @@ import java.text.SimpleDateFormat;
 
 public class DBOper {
     private DBConnector connector;
+    private ArrayList<EventData> eventlist = new ArrayList<EventData>();
     public DBOper(Context context) {
         connector = new DBConnector(context);
     }
     //插入事件将接受一个EventData数据，注意event_id在此函数中无效
-    public int insert(EventData eventdata) {
-        int rtn = 0;
+    public void insert(EventData eventdata) {
         SimpleDateFormat sdf= (SimpleDateFormat) SimpleDateFormat.getDateTimeInstance();
         int if_alarm = 0;
         if(eventdata.event_if_alarm) if_alarm = 1;
         SQLiteDatabase database = connector.getWritableDatabase();
-        database.beginTransaction();
-        try {
-            database.execSQL("insert into EventData (event_title, event_date, event_if_alarm, event_note) values ('"+
-                    eventdata.event_title+"','"+
-                    sdf.format(eventdata.event_date)+"',"+
-                    Integer.toString(if_alarm) + " ,'"+
-                    eventdata.event_note + "')");
-            database.setTransactionSuccessful();
-            rtn = 1;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            rtn = 0;
-        } finally {
-            database.endTransaction();
-        }
+        database.execSQL("insert into EventData (event_title, event_date, event_if_alarm, event_note) values(?,?,?,?)",
+                new Object[] {eventdata.event_title,sdf.format(eventdata.event_date),if_alarm,eventdata.event_note});
         database.close();
-        return rtn;
     }
 
-    /*
-        如何使用DBOper查询记录？
-        在main_activity中：
-            DBOper oper = new DBOper(this);
-            Cursor c = oper.queryCursor();
-        即获得数据库游标，如果想得到记录总数，则可使用：
-            int all_the_events = c.getCount();
-     */
+    public void delete(EventData eventdata) {
+        SimpleDateFormat sdf= (SimpleDateFormat) SimpleDateFormat.getDateTimeInstance();
+        int if_alarm = 0;
+        if(eventdata.event_if_alarm) if_alarm = 1;
+        SQLiteDatabase database = connector.getWritableDatabase();
+        database.execSQL("delete from EventData where event_title = ? and event_date = ? and event_if_alarm = ? and event_note = ?",
+                new Object[] {eventdata.event_title,sdf.format(eventdata.event_date),if_alarm,eventdata.event_note});
+        database.close();
+    }
 
-    public Cursor queryCursor() {
-        Cursor c = null;
+    public void update(EventData eventdata1,EventData eventdata2) {
+        delete(eventdata1);
+        insert(eventdata2);
+    }
+
+    public ArrayList<EventData> query() throws ParseException {
+        SimpleDateFormat sdf = (SimpleDateFormat) SimpleDateFormat.getDateTimeInstance();
         SQLiteDatabase database = connector.getReadableDatabase();
-        c = database.rawQuery("select * from EventData",null);
-        return c;
+        @SuppressLint("Recycle") Cursor cursor = database.rawQuery("select * from EventData", null);
+        eventlist.clear();
+        while (cursor.moveToNext()) {
+            String title = cursor.getString(cursor.getColumnIndex("event_title"));
+            Date date = null;
+            date = sdf.parse(cursor.getString(cursor.getColumnIndex("event_date")));
+            int ifalarm = cursor.getInt(cursor.getColumnIndex("event_if_alarm"));
+            boolean if_alarm = false;
+            if (ifalarm == 1) if_alarm = true;
+            String note = cursor.getString(cursor.getColumnIndex("event_note"));
+            eventlist.add(new EventData(title, date, if_alarm, note));
+        }
+        return eventlist;
     }
-
-
-
 }

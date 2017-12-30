@@ -1,8 +1,10 @@
-package com.a.io_ver13;
+package com.example.administrator.mytestdb;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 
 /**
  * Created by Administrator on 2017/12/30.
@@ -12,18 +14,21 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBConnector extends SQLiteOpenHelper {
     private final static int VERSION = 1;
     private final static String DATABASE_NAME = "localevents.db";
+    private static final String TAG = "DBConnector";
 
-    public DBConnector(Context context) {
+    DBConnector(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table EventData (event_id integer PRIMARY KEY AUTOINCREMENT,\n" +
-                "event_title varchar(255),\n" +
-                "event_date varchar(255),\n" +
-                "event_if_alarm integer,\n" +
+        db.execSQL("create table EventData "+
+            "(_id integer PRIMARY KEY AUTOINCREMENT," +
+                "event_title varchar(255)," +
+                "event_date varchar(255)," +
+                "event_if_alarm integer," +
                 "event_note varchar(255))");
+        Log.i(TAG,"onCreate");
     }
 
     @Override
@@ -32,7 +37,7 @@ public class DBConnector extends SQLiteOpenHelper {
         this.onCreate(db);
     }
 
-    public void onDelete(SQLiteDatabase db) {
+    private void onDelete(SQLiteDatabase db) {
         db.execSQL("drop table if exists EventData");
     }
 }
