@@ -41,6 +41,7 @@ public class CreateActivity extends Activity {
         m_event_data = new EventData();
         //add button event here
         Button button_date = (Button)findViewById(R.id.button_date_selecter);
+        button_date.setText(m_event_data.day_to_string()+" >");
         button_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,6 +55,7 @@ public class CreateActivity extends Activity {
             }
         });
         Button button_time = (Button)findViewById(R.id.button_time_selecter);
+        button_time.setText(m_event_data.time_to_string()+" >");
         button_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
@@ -66,7 +68,7 @@ public class CreateActivity extends Activity {
 
             public void onClick(View view){
                 //pass data to main
-                EditText edit_title = (EditText)findViewById(R.id.edit_event_title);
+                EditText edit_title = (EditText)findViewById(R.id.edit_title);
                 EditText edit_note = (EditText)findViewById(R.id.edit_note);
                 String m_event_title = "";
                 m_event_title += edit_title.getText().toString().trim();
@@ -81,13 +83,13 @@ public class CreateActivity extends Activity {
                 m_event_data.set_event_title(m_event_title);
                 m_event_data.set_event_note(m_event_note);
                 //存入数据库
-                /*dbOper.insert(m_event_data);
-                try {
+                dbOper.insert(m_event_data);
+                /*try {
                     eventlist = dbOper.query();
                 } catch (ParseException e) {
                     e.printStackTrace();
-                }
-                eventAdapter.notifyDataSetChanged();
+                }*/
+                //eventAdapter.notifyDataSetChanged();
                 //alertDialog.dismiss();*/
                 setResult(CREATE_RESULT, return_intent);
                 finish();
@@ -113,9 +115,9 @@ public class CreateActivity extends Activity {
     protected Dialog onCreateDialog(int id) {
         switch (id) {
             case DATE_DIALOG:
-                return new DatePickerDialog(this, mdateListener, 2017, 1-1, 1);
+                return new DatePickerDialog(this, mdateListener, m_event_data.get_event_date().getYear()+1900, m_event_data.get_event_date().getMonth()+1, m_event_data.get_event_date().getDay());
             case TIME_DIALOG:
-                return new TimePickerDialog(this, mtimeListener, 1, 1, true);
+                return new TimePickerDialog(this, mtimeListener, m_event_data.get_event_date().getHours(), m_event_data.get_event_date().getMinutes(), true);
         }
         return null;
     }
@@ -128,8 +130,8 @@ public class CreateActivity extends Activity {
             mMonth = monthOfYear;
             mDay = dayOfMonth;*/
             Button button_date = (Button)findViewById(R.id.button_date_selecter);
-            button_date.setText(new StringBuffer().append(year).append("-").append(monthOfYear+1).append("-").append(dayOfMonth));
-            m_event_data.set_event_day(year, monthOfYear, dayOfMonth);
+            m_event_data.set_event_day(year-1900, monthOfYear, dayOfMonth);
+            button_date.setText(m_event_data.day_to_string()+" >");
         }
     };
     private TimePickerDialog.OnTimeSetListener mtimeListener = new TimePickerDialog.OnTimeSetListener() {
@@ -137,8 +139,8 @@ public class CreateActivity extends Activity {
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             Button button_time = (Button)findViewById(R.id.button_time_selecter);
-            button_time.setText(new StringBuffer().append(hourOfDay).append(":").append(minute));
             m_event_data.set_event_time(hourOfDay, minute, 0);
+            button_time.setText(m_event_data.time_to_string()+" >");
         }
     };
 }

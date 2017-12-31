@@ -12,6 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ArrayAdapter;
+
+import java.text.ParseException;
+import java.util.ArrayList;
 
 import android.widget.SimpleAdapter;
 
@@ -20,7 +24,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.Time;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -46,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean i = false;
 
     public EventData a;
+    private ListView listview;
+    private DBOper dbOper = new DBOper(this);
+    private ArrayList<EventData> eventlist;
+    private ArrayAdapter<EventData> eventAdapter;
 
 
     private ListView listView;
@@ -137,6 +144,12 @@ public class MainActivity extends AppCompatActivity {
                 //a.set_event_note("note");
                 //show_title.setText(a.get_event_title());
                 //show_note.setText(a.get_event_note());
+                /*try {
+                    eventlist = dbOper.query();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                */
             }
         }
     }

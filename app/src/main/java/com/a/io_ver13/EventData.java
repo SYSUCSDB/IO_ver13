@@ -76,7 +76,7 @@ public class EventData {
         return event_title;
     }
 
-    public Date get_event_data() {
+    public Date get_event_date() {
         return event_date;
     }
 
@@ -88,5 +88,21 @@ public class EventData {
         SimpleDateFormat sdf= (SimpleDateFormat) SimpleDateFormat.getDateTimeInstance();
         return event_title+","+sdf.format(event_date)+","+event_if_alarm+","+event_note;
     }
+
+    public String day_to_string() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
+        return sdf.format(event_date);
+    }
+
+    public String time_to_string() {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        return sdf.format(event_date);
+    }
+
+    public String date_to_string() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+        return sdf.format(event_date);
+    }
+
 
 }
