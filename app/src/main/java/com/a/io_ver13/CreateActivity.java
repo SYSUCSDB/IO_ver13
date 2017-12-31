@@ -14,6 +14,11 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TimePicker;
+import android.widget.ListView;
+import android.widget.ArrayAdapter;
+
+import java.text.ParseException;
+import java.util.ArrayList;
 
 /**
  * Created by pengb on 2017/12/19.
@@ -25,6 +30,10 @@ public class CreateActivity extends Activity {
     public final int DATE_DIALOG = 1;
     public final int TIME_DIALOG = 2;
     public EventData m_event_data;
+    private ListView listview;
+    private DBOper dbOper = new DBOper(this);
+    private ArrayList<EventData> eventlist;
+    private ArrayAdapter<EventData> eventAdapter;
     public boolean i = true;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,11 +77,18 @@ public class CreateActivity extends Activity {
                 //return_intent.putExtra("event_note", m_event_note);
                 //return_intent.putExtra("i", i);
                 //finish
-                m_event_data.set_enable();
+                //m_event_data.set_enable();
                 m_event_data.set_event_title(m_event_title);
                 m_event_data.set_event_note(m_event_note);
-                //DBOper m_dboper = new DBOper(CreateActivity.this);
-                //m_dboper.insert(m_event_data);
+                //存入数据库
+                dbOper.insert(m_event_data);
+                try {
+                    eventlist = dbOper.query();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                eventAdapter.notifyDataSetChanged();
+                //alertDialog.dismiss();
                 setResult(CREATE_RESULT, return_intent);
                 finish();
             }

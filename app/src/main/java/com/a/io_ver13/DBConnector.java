@@ -1,4 +1,4 @@
-package com.example.administrator.mytestdb;
+package com.a.io_ver13;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

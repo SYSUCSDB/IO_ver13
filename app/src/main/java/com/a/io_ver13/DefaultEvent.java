@@ -20,7 +20,7 @@ public class DefaultEvent {
             tmp.set_event_note("For your health, you need 6 bottles of water everyday.");
             Time tmp_time = new Time(8+i*3, 0, 0);
             tmp.set_event_time(tmp_time);
-            tmp.set_unable();
+            //tmp.set_unable();
             water_event.add(tmp);
         }
         for(int i = 0; i < 2; i++) {
@@ -29,7 +29,7 @@ public class DefaultEvent {
             tmp.set_event_note("For your health, you need to sleep now.");
             Time tmp_time = new Time(12+i*12, 0, 0);
             tmp.set_event_time(tmp_time);
-            tmp.set_unable();
+            //tmp.set_unable();
             sleep_event.add(tmp);
         }
         for(int i = 0; i < 3; i++) {
@@ -41,7 +41,7 @@ public class DefaultEvent {
             if(i == 2) h = 21;
             Time tmp_time = new Time(h, 0, 0);
             tmp.set_event_time(tmp_time);
-            tmp.set_unable();
+            //tmp.set_unable();
             sport_event.add(tmp);
         }
     }
@@ -49,7 +49,7 @@ public class DefaultEvent {
     public void add_water_event() {
         Date now = new Date();
         for (EventData evt: water_event) {
-            evt.set_enable();
+            //evt.set_enable();
             evt.set_event_day(now);
         }
     }
@@ -57,7 +57,7 @@ public class DefaultEvent {
     public void add_sport_event() {
         Date now = new Date();
         for (EventData evt: sport_event) {
-            evt.set_enable();
+            //evt.set_enable();
             evt.set_event_day(now);
         }
     }
@@ -65,7 +65,7 @@ public class DefaultEvent {
     public void add_sleep_event() {
         Date now = new Date();
         for (EventData evt: sleep_event) {
-            evt.set_enable();
+            //evt.set_enable();
             evt.set_event_day(now);
         }
     }
