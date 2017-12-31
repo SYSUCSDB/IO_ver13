@@ -81,14 +81,14 @@ public class CreateActivity extends Activity {
                 m_event_data.set_event_title(m_event_title);
                 m_event_data.set_event_note(m_event_note);
                 //存入数据库
-                dbOper.insert(m_event_data);
+                /*dbOper.insert(m_event_data);
                 try {
                     eventlist = dbOper.query();
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
                 eventAdapter.notifyDataSetChanged();
-                //alertDialog.dismiss();
+                //alertDialog.dismiss();*/
                 setResult(CREATE_RESULT, return_intent);
                 finish();
             }
